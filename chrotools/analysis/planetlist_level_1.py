@@ -1,7 +1,16 @@
-import glob as g
-import pandas as pd
+# -*- coding: utf-8 -*-
+"""Level 1 planet analysis functions. These functions are defined by:
 
-import hapi_io
+1. They require exactly 1 planetlist DataFrame to operate on.
+2. They return exactly 1 planetlist DataFrame.
+
+This implies that they operate only on one day's data.
+
+This file contains the following functions:
+
+1. planets_in_area(planet_df, cluster, extents)
+2. planets_in_alliance(planet_df, alliance_tag, cluster='all')
+"""
 
 
 def planets_in_area(planet_df, cluster, extents):
@@ -19,6 +28,7 @@ def planets_in_area(planet_df, cluster, extents):
     =======
     planets_extents (pandas DataFrame): DataFrame of planets within
                                         extents.
+
     """
 
     xmin, xmax, ymin, ymax = extents
@@ -46,13 +56,10 @@ def planets_in_alliance(planet_df, alliance_tag, cluster='all'):
         =======
         planets_alliance (pandas DataFrame): DataFrame of planets within
                                             extents.
+
         """
-    if cluster is 'all':
-        planets_alliance = planet_df[planet_df['Tag'] == alliance_tag]
-        return planets_alliance
+    if cluster == 'all':
+        return planet_df[planet_df['Tag'] == alliance_tag]
 
-    planets_alliance = planet_df[(planet_df['Tag'] == alliance_tag) &
-                                 (planet_df['SC'] == cluster)]
-    return planets_alliance
-
-# print(hapi_io.read_planet_list('20170809', 'Hyperiums8').head())
+    return planet_df[(planet_df['Tag'] == alliance_tag) &
+                     (planet_df['SC'] == cluster)]

@@ -20,7 +20,7 @@ def read_planet_list(date, game_name):
     planet_data (pandas DataFrame): DataFrame of planet data."""
     file_candidate = date+'_planetlist_'+game_name
     files = [x for x in g.glob(r'../data/*.txt.gz') if file_candidate in x]
-    if len(files) is 0:
+    if not files:
         print("No file found for given date...")
         print("Aborting...")
         return
@@ -32,3 +32,4 @@ def read_planet_list(date, game_name):
     planet_data['Prod'] = planet_data['Prod'].apply(lambda x: PROD[x])
     planet_data['Race'] = planet_data['Race'].apply(lambda x: RACE[x])
     return planet_data
+
