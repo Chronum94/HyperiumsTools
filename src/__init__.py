@@ -1,4 +1,4 @@
-from ._hapiutils import *
+from . import _hapiutils
+from . import analyse_planetlist
 
-
-__all__ = ['GOVS', 'PROD', 'RACE', 'data_columns']
+__all__ = ['_hapiutils', 'analyse_planetlist']
