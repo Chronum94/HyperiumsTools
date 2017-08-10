@@ -1,7 +1,7 @@
 import seaborn as sns
 import matplotlib.pyplot as plt
 
-import src.analyse_planetlist as pl
+import analysis.analyse_planetlist as pl
 
 
 tag = '[Panic]'
