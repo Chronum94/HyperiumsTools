@@ -15,7 +15,7 @@ import planetlist_level_1 as lev
 
 
 def _planets_common_in_frame(df1, df2, by='ID'):
-    return df1.join(df2, on=by, how='inner', rsuffix='_r')
+    return df1.merge(df2, on=[by], how='inner')
 
 
 def planets_new_area(from_date,
@@ -95,7 +95,67 @@ def planets_gov_change_area(from_date,
 
     planets_gov_changed = _planets_common_in_frame(planets_to_gov,
                                                    planets_from_gov)
-    return planets_to_gov[planets_to_gov['ID'].isin(planets_gov_changed['ID'])]
+    return planets_gov_changed
 
 
-# print(planets_gov_change_area('20170810', '20170811', 3, [-30, 0, -30, -1]))
+def planets_tag_change_area(from_date,
+                            to_date, cluster, extents, from_tag='any',
+                            to_tag='any', game='Hyperiums8'):
+    """Takes two dates (in 'YYYYMMDD' form), a cluster number, extents,
+    the government from, and the government to which the planets are
+    changed. Returns planets whose governments have changed from
+    from_gov to to_gov in the interval of time.
+
+    Inputs:
+    =======
+    from_date (str): YYYYMMDD format datestring from where to start
+                    interval.
+    to_date (str): YYYYMMDD format datestring to where the interval
+                    hoes.
+    cluster (int): The supercluster in which to search.
+    extents (list or tuple): [xmin, xmax, ymin, ymax] coordinate
+                    extents in which to check for new planets.
+    from_gov (str): The previous day's government. 'Demo', 'Auth' or
+                    'Dict'. Default 'all'. If set to 'all', all
+                    governments that are not to_gov will be selected.
+    to_gov (str): The current day's government. Same strings as
+                    from_gov, but not 'all'. Default 'Dict'.
+
+    Output:
+    =======
+    gov_changed_planets (pandas DataFrame): DataFrame of gov-changed
+                    planets in the area.
+
+    """
+    planets_from_date = hapi.read_planet_list(from_date, game)
+    planets_to_date = hapi.read_planet_list(to_date, game)
+
+    planets_from_area = lev.planets_in_area(planets_from_date,
+                                            cluster, extents)
+    planets_to_area = lev.planets_in_area(planets_to_date, cluster, extents)
+
+    planets_tag_combined = _planets_common_in_frame(planets_from_area,
+                            planets_to_area)
+    if from_tag == 'any' and to_tag == 'any':
+        planets_tag_changed = planets_tag_combined[
+            planets_tag_combined['Tag_x'] != planets_tag_combined['Tag_y']]
+        return planets_tag_changed
+
+    elif from_tag == 'any' and to_tag != 'any':
+        planets_tag_changed = planets_tag_combined[
+            (planets_tag_combined['Tag_x'] != planets_tag_combined['Tag_y']) &
+            (planets_tag_combined['Tag_y'] == to_tag)]
+        return planets_tag_changed
+
+    elif from_tag != 'any' and to_tag == 'any':
+        planets_tag_changed = planets_tag_combined[
+            (planets_tag_combined['Tag_x'] != planets_tag_combined['Tag_y']) &
+            (planets_tag_combined['Tag_x'] == from_tag)]
+        return planets_tag_changed
+
+    else:
+        planets_tag_changed = planets_tag_combined[
+            (planets_tag_combined['Tag_x'] != planets_tag_combined['Tag_y']) &
+            (planets_tag_combined['Tag_x'] == from_tag) &
+            (planets_tag_combined['Tag_y'] == to_tag)]
+        return planets_tag_changed
