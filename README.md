@@ -4,5 +4,5 @@ This is a Hyperiums trends and map data toolset. It is currently very primitive,
 # TODO:
 - [x] Track new planets in area.
 - [ ] Track planet movement in area.
-- [ ] Track gov. changes in area.
+- [x] Track gov. changes in area.
 - [ ] Track tag changes in area.
