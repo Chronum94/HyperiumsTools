@@ -19,7 +19,7 @@ def read_planet_list(date, game_name):
     =======
     planet_data (pandas DataFrame): DataFrame of planet data."""
     file_candidate = date+'_planetlist_'+game_name
-    files = [x for x in g.glob(r'../data/*.txt.gz') if file_candidate in x]
+    files = [x for x in g.glob(r'../data/planetlist/*.txt.gz') if file_candidate in x]
     if not files:
         print("No file found for given date...")
         print("Aborting...")
