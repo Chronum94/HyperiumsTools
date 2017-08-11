@@ -14,6 +14,10 @@ import hapi_io as hapi
 import planetlist_level_1 as lev
 
 
+def _planets_common_in_frame(df1, df2, by='ID'):
+    return df1.join(df2, on=by, how='inner', rsuffix='_r')
+
+
 def planets_new_area(from_date,
                         to_date, cluster, extents, game='Hyperiums8'):
     """Takes two dates (in 'YYYYMMDD' form), a cluster number, and
@@ -89,8 +93,8 @@ def planets_gov_change_area(from_date,
                                              from_gov]
     planets_to_gov = planets_to_area[planets_to_area['Gov'] == to_gov]
 
-    planets_gov_changed = planets_to_gov.join(planets_from_gov, on='ID',
-                                              how='inner', rsuffix='_r')
+    planets_gov_changed = _planets_common_in_frame(planets_to_gov,
+                                                   planets_from_gov)
     return planets_to_gov[planets_to_gov['ID'].isin(planets_gov_changed['ID'])]
 
 
