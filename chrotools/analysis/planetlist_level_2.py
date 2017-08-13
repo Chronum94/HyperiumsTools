@@ -1,4 +1,8 @@
 # -*- coding: utf-8 -*-
+
+import hapi_io as hapi
+import planetlist_level_1 as lev
+
 """Level 2 planet analysis functions. These functions are defined by:
 
 !! These specifications are tentative and may change.
@@ -8,10 +12,8 @@
 This implies that they operate only on two days' data.
 
 """
-import pandas as pd
-
-import hapi_io as hapi
-import planetlist_level_1 as lev
+__all__ = ['planets_new_area', 'planets_gov_change_area',
+           'planets_tag_change_area']
 
 
 def _planets_common_in_frame(df1, df2, by='ID'):
@@ -159,3 +161,12 @@ def planets_tag_change_area(from_date,
             (planets_tag_combined['Tag_x'] == from_tag) &
             (planets_tag_combined['Tag_y'] == to_tag)]
         return planets_tag_changed
+
+"""
+import pandas as pd
+pd.set_option('display.max_columns', 500)
+pd.set_option('display.width', 150)
+print(planets_gov_change_area('20170812', '20170815', 3, [-30, 0, -30, -1])
+      [['Name_x', 'Name_y', 'x_x', 'y_x', 'Gov_x', 'Gov_y', 'Tag_x']])
+print(planets_tag_change_area('20170812', '20170813', 3, [-30, 0, -30, -1])
+      [['Name_x', 'x_x', 'y_x', 'Gov_x', 'Gov_y', 'Tag_x', 'Tag_y']])"""

@@ -1,4 +1,4 @@
-from . import _hapiutils
+from _hapiutils import *
 from . import planetlist_level_1
 from . import hapi_io
 
