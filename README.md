@@ -6,3 +6,6 @@ This is a Hyperiums trends and map data toolset. It is currently very primitive,
 - [ ] Track planet movement in area.
 - [x] Track gov. changes in area.
 - [ ] Track tag changes in area.
+- [ ] Player influ. change tracker.
+- [ ] Playerlist influ. change tracker.
+- [ ] Cumulative influ. change stats.
