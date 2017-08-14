@@ -64,10 +64,10 @@ def planets_in_alliance(planet_df, alliance_tag, cluster='all'):
     return planet_df[(planet_df['Tag'] == alliance_tag) &
                      (planet_df['SC'] == cluster)]
 
-
-"""import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt
 import hapi_io as hapi
 df = hapi.read_planet_list('20170812', 'Hyperiums8')
-panicdf = planets_in_alliance(df, '[Panic]', cluster=3)
-plt.hist(panicdf['Act'], bins=50)
-plt.show()"""
+# df = df[df['Civ'] > 20]
+#panicdf = planets_in_alliance(df, '[Panic]', cluster=3)
+plt.scatter(df['Civ'], df['Act'], marker='.', linewidths=0.1)
+plt.show()
