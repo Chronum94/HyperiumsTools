@@ -166,7 +166,7 @@ def planets_tag_change_area(from_date,
 import pandas as pd
 pd.set_option('display.max_columns', 500)
 pd.set_option('display.width', 150)
-print(planets_gov_change_area('20170813', '20170814', 3, [-30, 0, -30, -1])
+print(planets_gov_change_area('20170814', '20170815', 3, [-30, 0, -30, -1])
       [['Name_x', 'Name_y', 'x_x', 'y_x', 'Gov_x', 'Gov_y', 'Tag_x']])
-print(planets_tag_change_area('20170813', '20170814', 3, [-30, 0, -30, -1])
+print(planets_tag_change_area('20170814', '20170815', 3, [-30, 0, -30, -1])
       [['Name_x', 'x_x', 'y_x', 'Gov_x', 'Gov_y', 'Tag_x', 'Tag_y']])

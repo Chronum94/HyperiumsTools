@@ -1,7 +1,7 @@
 import seaborn as sns
 import matplotlib.pyplot as plt
 
-import analysis.analyse_planetlist as pl
+import chrotools.analysis as pl
 
 
 tag = '[Panic]'
@@ -13,7 +13,7 @@ planet_data_yeste = pl.read_planet_list(yesterday, game)
 planet_data_today = pl.read_planet_list(today, game)
 
 # Get alliance planet list.
-panic_tagged_yeste = pl.plane   ts_in_alliance(planet_data_yeste, tag, cluster=3)
+panic_tagged_yeste = pl.planets_in_alliance(planet_data_yeste, tag, cluster=3)
 panic_tagged_today = pl.planets_in_alliance(planet_data_today, tag, cluster=3)
 
 print('Average planet activity previously in', tag)
