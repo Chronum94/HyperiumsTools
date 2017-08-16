@@ -3,7 +3,7 @@
 import glob as g
 import pandas as pd
 
-from _hapiutils import GOVS, PROD, RACE, planet_cols, player_cols
+from ._hapiutils import GOVS, PROD, RACE, planet_cols, player_cols
 
 __all__ = ['read_planet_list', 'read_player_list']
 
