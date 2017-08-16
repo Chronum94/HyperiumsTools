@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
-import hapi_io
-import planetlist_level_1 as lev
+from .hapi_io import read_planet_list
+from .planetlist_level_1 import (planets_in_alliance, planets_in_area)
 
 """Level 2 planet analysis functions. These functions are defined by:
 
@@ -42,12 +42,12 @@ def planets_new_area(from_date,
                 area.
 
     """
-    planets_from_date = hapi_io.read_planet_list(from_date, game)
-    planets_to_date = hapi_io.read_planet_list(to_date, game)
+    planets_from_date = read_planet_list(from_date, game)
+    planets_to_date = read_planet_list(to_date, game)
 
-    planets_from_area = lev.planets_in_area(planets_from_date,
+    planets_from_area = planets_in_area(planets_from_date,
                                             cluster, extents)
-    planets_to_area = lev.planets_in_area(planets_to_date, cluster, extents)
+    planets_to_area = planets_in_area(planets_to_date, cluster, extents)
 
     return planets_to_area[~planets_to_area['ID'].isin(planets_from_area['ID'])]
 
@@ -81,12 +81,12 @@ def planets_gov_change_area(from_date,
                     planets in the area.
 
     """
-    planets_from_date = hapi_io.read_planet_list(from_date, game)
-    planets_to_date = hapi_io.read_planet_list(to_date, game)
+    planets_from_date = read_planet_list(from_date, game)
+    planets_to_date = read_planet_list(to_date, game)
 
-    planets_from_area = lev.planets_in_area(planets_from_date,
+    planets_from_area = planets_in_area(planets_from_date,
                                             cluster, extents)
-    planets_to_area = lev.planets_in_area(planets_to_date, cluster, extents)
+    planets_to_area = planets_in_area(planets_to_date, cluster, extents)
 
     if from_gov == 'any':
         planets_from_gov = planets_from_area[planets_from_area['Gov'] != to_gov]
@@ -129,12 +129,12 @@ def planets_tag_change_area(from_date,
                     planets in the area.
 
     """
-    planets_from_date = hapi_io.read_planet_list(from_date, game)
-    planets_to_date = hapi_io.read_planet_list(to_date, game)
+    planets_from_date = read_planet_list(from_date, game)
+    planets_to_date = read_planet_list(to_date, game)
 
-    planets_from_area = lev.planets_in_area(planets_from_date,
+    planets_from_area = planets_in_area(planets_from_date,
                                             cluster, extents)
-    planets_to_area = lev.planets_in_area(planets_to_date, cluster, extents)
+    planets_to_area = planets_in_area(planets_to_date, cluster, extents)
 
     planets_tag_combined = _planets_common_in_frame(planets_from_area,
                             planets_to_area)
@@ -163,10 +163,11 @@ def planets_tag_change_area(from_date,
         return planets_tag_changed
 
 
-import pandas as pd
+"""import pandas as pd
 pd.set_option('display.max_columns', 500)
 pd.set_option('display.width', 150)
 print(planets_gov_change_area('20170815', '20170816', 3, [-30, 0, -30, -1])
       [['Name_x', 'Name_y', 'x_x', 'y_x', 'Gov_x', 'Gov_y', 'Tag_x']])
 print(planets_tag_change_area('20170815', '20170816', 3, [-30, 0, -30, -1])
       [['Name_x', 'x_x', 'y_x', 'Gov_x', 'Gov_y', 'Tag_x', 'Tag_y']])
+"""

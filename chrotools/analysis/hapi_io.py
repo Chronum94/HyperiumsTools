@@ -1,11 +1,15 @@
 # -*- coding: utf-8 -*-
 
 import glob as g
+import os, sys
 import pandas as pd
 
-from _hapiutils import GOVS, PROD, RACE, planet_cols, player_cols
+from ._hapiutils import GOVS, PROD, RACE, planet_cols, player_cols
 
 __all__ = ['read_planet_list', 'read_player_list']
+
+# Hackey as fuck, but one makes do...
+DATA_FOLDER = os.path.dirname(os.path.dirname(__file__))+r'\data'
 
 
 def read_planet_list(date, game_name):
@@ -22,9 +26,11 @@ def read_planet_list(date, game_name):
     Output:
     =======
     planet_data (pandas DataFrame): DataFrame of planet data."""
+
     file_candidate = date+'_planetlist_'+game_name
-    files = [x for x in g.glob(r'../data/planetlist/*.txt.gz')  if file_candidate in x]
-    # print(files)
+    files = [x for x in g.glob(DATA_FOLDER+r'\planetlist\*.txt.gz')
+             if file_candidate in x]
+
     if not files:
         print("No file found for given date...")
         print("Aborting...")
@@ -54,7 +60,8 @@ def read_player_list(date, game_name):
     =======
     planet_data (pandas DataFrame): DataFrame of player data."""
     file_candidate = date+'_playerlist_'+game_name
-    files = [x for x in g.glob(r'../data/playerlist/*.txt.gz') if file_candidate in x]
+    files = [x for x in g.glob(DATA_FOLDER + r'\playerlist\*.txt.gz')
+             if file_candidate in x]
     if not files:
         print("No file found for given date...")
         print("Aborting...")
