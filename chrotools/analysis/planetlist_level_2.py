@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-import hapi_io as hapi
+import hapi_io
 import planetlist_level_1 as lev
 
 """Level 2 planet analysis functions. These functions are defined by:
@@ -42,8 +42,8 @@ def planets_new_area(from_date,
                 area.
 
     """
-    planets_from_date = hapi.read_planet_list(from_date, game)
-    planets_to_date = hapi.read_planet_list(to_date, game)
+    planets_from_date = hapi_io.read_planet_list(from_date, game)
+    planets_to_date = hapi_io.read_planet_list(to_date, game)
 
     planets_from_area = lev.planets_in_area(planets_from_date,
                                             cluster, extents)
@@ -81,8 +81,8 @@ def planets_gov_change_area(from_date,
                     planets in the area.
 
     """
-    planets_from_date = hapi.read_planet_list(from_date, game)
-    planets_to_date = hapi.read_planet_list(to_date, game)
+    planets_from_date = hapi_io.read_planet_list(from_date, game)
+    planets_to_date = hapi_io.read_planet_list(to_date, game)
 
     planets_from_area = lev.planets_in_area(planets_from_date,
                                             cluster, extents)
@@ -129,8 +129,8 @@ def planets_tag_change_area(from_date,
                     planets in the area.
 
     """
-    planets_from_date = hapi.read_planet_list(from_date, game)
-    planets_to_date = hapi.read_planet_list(to_date, game)
+    planets_from_date = hapi_io.read_planet_list(from_date, game)
+    planets_to_date = hapi_io.read_planet_list(to_date, game)
 
     planets_from_area = lev.planets_in_area(planets_from_date,
                                             cluster, extents)
@@ -163,10 +163,11 @@ def planets_tag_change_area(from_date,
         return planets_tag_changed
 
 
-import pandas as pd
+"""import pandas as pd
 pd.set_option('display.max_columns', 500)
 pd.set_option('display.width', 150)
-print(planets_gov_change_area('20170814', '20170815', 3, [-30, 0, -30, -1])
+print(planets_gov_change_area('20170815', '20170816', 3, [-30, 0, -30, -1])
       [['Name_x', 'Name_y', 'x_x', 'y_x', 'Gov_x', 'Gov_y', 'Tag_x']])
-print(planets_tag_change_area('20170814', '20170815', 3, [-30, 0, -30, -1])
+print(planets_tag_change_area('20170815', '20170816', 3, [-30, 0, -30, -1])
       [['Name_x', 'x_x', 'y_x', 'Gov_x', 'Gov_y', 'Tag_x', 'Tag_y']])
+"""

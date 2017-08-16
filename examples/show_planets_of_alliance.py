@@ -1,7 +1,7 @@
 import seaborn as sns
 import matplotlib.pyplot as plt
 
-import chrotools.analysis as pl
+import chrotools.analysis.hapi_io as pl
 
 
 tag = '[Panic]'

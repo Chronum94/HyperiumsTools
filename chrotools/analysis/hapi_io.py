@@ -3,7 +3,7 @@
 import glob as g
 import pandas as pd
 
-from ._hapiutils import GOVS, PROD, RACE, planet_cols, player_cols
+from _hapiutils import GOVS, PROD, RACE, planet_cols, player_cols
 
 __all__ = ['read_planet_list', 'read_player_list']
 
@@ -23,7 +23,8 @@ def read_planet_list(date, game_name):
     =======
     planet_data (pandas DataFrame): DataFrame of planet data."""
     file_candidate = date+'_planetlist_'+game_name
-    files = [x for x in g.glob(r'../data/planetlist/*.txt.gz') if file_candidate in x]
+    files = [x for x in g.glob(r'../data/planetlist/*.txt.gz')]#  if file_candidate in x]
+    print(files)
     if not files:
         print("No file found for given date...")
         print("Aborting...")
@@ -67,4 +68,5 @@ def read_player_list(date, game_name):
     # print(player_data)
     return player_data
 
-# print(read_player_list('20170812', 'Hyperiums8'))
+"""print(read_player_list('20170812', 'Hyperiums8'))
+"""
