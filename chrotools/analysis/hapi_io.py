@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import glob as g
-import os, sys
+from pathlib import Path
 import pandas as pd
 
 from ._hapiutils import GOVS, PROD, RACE, planet_cols, player_cols
@@ -9,8 +9,7 @@ from ._hapiutils import GOVS, PROD, RACE, planet_cols, player_cols
 __all__ = ['read_planet_list', 'read_player_list']
 
 # Hackey as fuck, but one makes do...
-DATA_FOLDER = os.path.dirname(os.path.dirname(__file__))+r'\data'
-
+DATA_FOLDER = str(Path(__file__).parents[1])+r'\data'
 
 def read_planet_list(date, game_name):
     """Returns a pandas DataFrame of planet data for the given date
@@ -58,7 +57,7 @@ def read_player_list(date, game_name):
 
     Output:
     =======
-    planet_data (pandas DataFrame): DataFrame of player data."""
+    player_data (pandas DataFrame): DataFrame of player data."""
     file_candidate = date+'_playerlist_'+game_name
     files = [x for x in g.glob(DATA_FOLDER + r'\playerlist\*.txt.gz')
              if file_candidate in x]
@@ -72,8 +71,4 @@ def read_player_list(date, game_name):
     player_data = pd.read_csv(filename, sep=' ', comment='#', header=None,
                               usecols=range(9))  # Don't care about country.
     player_data.columns = player_cols
-    # print(player_data)
     return player_data
-
-"""print(read_player_list('20170812', 'Hyperiums8'))
-"""
