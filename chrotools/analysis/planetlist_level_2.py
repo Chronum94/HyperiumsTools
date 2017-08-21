@@ -163,4 +163,17 @@ def planets_tag_change_area(from_date,
         return planets_tag_changed
 
 
-# def
+def planet_moves_between_area(from_date, to_date, from_sc, to_sc,
+                              game='Hyperiums8'):
+
+    extents = [-30, 30, -30, 30]
+    planets_from_date = read_planet_list(from_date, game)
+    planets_to_date = read_planet_list(to_date, game)
+
+    planets_from_area = planets_in_area(planets_from_date,
+                                        from_sc, extents)
+    planets_to_area = planets_in_area(planets_to_date, to_sc, extents)
+
+    planets_areas_combined = _planets_common_in_frame(planets_from_area,
+                                                      planets_to_area)
+    return planets_areas_combined
