@@ -1,0 +1,22 @@
+Kahoma		SC3(1,-11)
+
+36
+44%
+
+
+TECHNO   Dictatorial (5)    	 	Xillor
+Civ. level: 		9
+Parano modeUP
+
+Military status
+Defending
+Blockade
+Stasis
+Space AvgP:
+3.1M
+Enemy space AvgP:
+4.5M
+Ground AvgP:
+260.1K   44%
+Enemy ground AvgP
+360
