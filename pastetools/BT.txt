@@ -1,0 +1,11 @@
+Own forces
+Defending
+Attacking
+Initial	Lost	Initial	Lost	Initial	Lost
+ Starbases	0	0	6	0	0	0
+ Cruisers	0	0	209314	12727	60493	3676
+ Destroyers	30036	1534	3M	137947	3.1M	161016
+ Bombers	0	0	55233	261	156618	1183
+ Scouts	0	0	66689	2897	470343	58656
+ Carried Armies	0	0	?	1135	47839	2032
+ Ground Armies	0	0	?	2636	32002	1

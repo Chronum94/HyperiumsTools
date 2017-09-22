@@ -8,8 +8,8 @@ pd.set_option('display.max_columns', 500)
 pd.set_option('display.width', 150)
 pd.set_option('display.max_rows', 500)
 
-from_date = '20170825'
-to_date = '20170826'
+from_date = '20170913'
+to_date = '20170914'
 extents = [-30, 0, -30, -1]
 print('Planet change report from', from_date, 'to', to_date)
 print('In', *extents)
